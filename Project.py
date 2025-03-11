@@ -27,10 +27,13 @@ while cap.isOpened():
     ret,frame=cap.read()
     if ret is True:
         frame=cv.resize(frame,(frame_width,frame_height))
+        #convert image to gray 
         gray_img=cv.cvtColor(frame,cv.COLOR_BGR2GRAY)
+        #detect the faces
         faces=face_cascade.detectMultiScale(gray_img,1.1,8)
         
         for (x,y,w,h) in faces:
+            #draw rectangle on faces
             cv.rectangle(frame,(x,y),(x+w,y+h),(255,255,255),1)
             
         cv.imshow('frames',frame)
